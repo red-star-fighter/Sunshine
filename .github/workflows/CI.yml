@@ -363,8 +363,8 @@ jobs:
       fail-fast: false  # false to test all, true to fail entire job if any fail
       matrix:
         include:  # package these differently
-          - type: appimage
-            EXTRA_ARGS: '-DSUNSHINE_CONFIGURE_APPIMAGE=ON'
+          - type: cpack
+          
             dist: 20.04
 
     steps:
