@@ -488,16 +488,14 @@ jobs:
           make -j ${nproc}
 
       - name: Package Linux - CPACK
-        if: ${{ matrix.type == 'cpack' }}
         working-directory: build
         run: |
           cpack -G DEB
           mv ./cpack_artifacts/Sunshine.deb ../artifacts/sunshine-${{ matrix.dist }}.deb
-
-          if [[ ${{ matrix.dist }} == "20.04" ]]; then
+          
             cpack -G RPM
             mv ./cpack_artifacts/Sunshine.rpm ../artifacts/sunshine.rpm
-          fi
+          
 
       - name: Set AppImage Version
         if: ${{ matrix.type == 'appimage' && ( needs.check_changelog.outputs.next_version_bare != needs.check_changelog.outputs.last_version ) }}  # yamllint disable-line rule:line-length
